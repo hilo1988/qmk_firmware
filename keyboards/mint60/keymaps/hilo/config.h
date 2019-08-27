@@ -15,7 +15,7 @@
  */
 
 #pragma once
-
+#define IGNORE_MOD_TAP_INTERRUPT
 
 /* Use I2C or Serial, not both */
 // #define USE_SERIAL
