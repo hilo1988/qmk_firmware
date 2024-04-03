@@ -32,10 +32,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    * `------------------------------------------------'     `------------------------------------------------'
    */
   [BASE] = LAYOUT( \
-    CC_T(KC_ESC),      KC_Q,    KC_W,    KC_E,    KC_R,              KC_T,            LT(RAISE, EISU),   /**/ LT(RAISE, KANA),   KC_Y,             KC_U,             KC_I,    KC_O,     CC_T(KC_P), KC_BSPC, \
-    SC_T(KC_TAB),      KC_A,    KC_S,    KC_D,    LT(TEN_KEY, KC_F), KC_G,            LT(RAISE, KC_SPC), /**/ LT(RAISE, KC_SPC), KC_H,             KC_J,             KC_K,    KC_L,     KC_SCLN,    KC_ENT, \
-    KC_LSFT,      KC_Z,    KC_X,    KC_C,    KC_V,              KC_B,            LT(LOWER, KC_SPC),    /**/ LT(LOWER,KC_SPC),    KC_N,             KC_M,             KC_COMM, KC_DOT,   KC_SLSH,    KC_GRV, \
-    KC_LCTL,      KC_LGUI, KC_LALT, KC_LCTL, LT(LOWER, EISU),   LT(LOWER, EISU), SGUI_T(KC_SPC),    /**/ SGUI_T(KC_SPC),    LT(RAISE, KANA),  LT(RAISE, KANA),  KC_LEFT, KC_DOWN,  KC_UP,      KC_RGHT \
+    CC_T(KC_ESC),  KC_Q,    KC_W,    KC_E,    KC_R,              KC_T,            LT(RAISE, EISU),   /**/ LT(RAISE, KANA),   KC_Y,             KC_U,             KC_I,    KC_O,     CC_T(KC_P), KC_BSPC, \
+    SC_T(KC_TAB),  KC_A,    KC_S,    KC_D,    LT(TEN_KEY, KC_F), KC_G,            LT(RAISE, KC_SPC), /**/ LT(RAISE, KC_SPC), KC_H,             KC_J,             KC_K,    KC_L,     KC_SCLN,    KC_ENT, \
+    KC_LSFT,       KC_Z,    KC_X,    KC_C,    KC_V,              KC_B,            LT(LOWER, KC_SPC), /**/ LT(LOWER,KC_SPC),  KC_N,             KC_M,             KC_COMM, KC_DOT,   KC_SLSH,    KC_GRV, \
+    KC_LCTL,       KC_LGUI, KC_LALT, KC_LCTL, LT(LOWER, EISU),   LT(LOWER, EISU), SGUI_T(KC_SPC),    /**/ SGUI_T(KC_SPC),    LT(RAISE, KANA),  LT(RAISE, KANA),  KC_LEFT, KC_DOWN,  KC_UP,      KC_RGHT \
   ),
 
   /* TEN_KEY
