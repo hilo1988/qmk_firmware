@@ -56,6 +56,12 @@ enum macro_keycodes {
   KC_SAMPLEMACRO,
 };
 
+// CMD + CTL
+#define CC_T(kc) MT(MOD_LGUI | MOD_LCTL, kc)
+
+// SHIFT + CTL
+#define SC_T(kc) MT(MOD_LCTL | MOD_LCTL, kc)
+
 //Macros
 #define M_SAMPLE M(KC_SAMPLEMACRO)
 
@@ -79,11 +85,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    * `-------------------------------------------------------------------------------------------------'
    */
   [_QWERTY] = LAYOUT( \
-    CC_T(KC_ESC),  KC_1,    KC_2,    KC_3,    KC_4,               KC_5,                            /**/                 KC_6,            KC_7,            KC_8,    KC_9,    KC_0,       KC_BSPC, \
-    CC_T(KC_ESC),  KC_Q,    KC_W,    KC_E,    KC_R,               KC_T,                            /**/                 KC_Y,            KC_U,            KC_I,    KC_O,    CC_T(KC_P), KC_BSPC, \
-    SC_T(KC_TAB),  KC_A,    KC_S,    KC_D,    LT(_TEN_KEY, KC_F), KC_G,                            /**/                 KC_H,            KC_J,            KC_K,    KC_L,    KC_SCLN,    KC_ENT, \
-    KC_LSFT,       KC_Z,    KC_X,    KC_C,    KC_V,               KC_B,            LT(KC_LBRC),    /**/ LT(KC_RBRC),    KC_N,            KC_M,            KC_COMM, KC_DOT,  KC_SLSH,    KC_GRV , \
-    ADJUST,        KC_LGUI, KC_LALT, KC_LCTL, LT(LOWER, EISU),    LT(LOWER, EISU), SGUI_T(KC_SPC), /**/ SGUI_T(KC_SPC), LT(RAISE, KANA), LT(RAISE, KANA), KC_LEFT, KC_DOWN, KC_UP,      KC_RGHT \
+    CC_T(KC_ESC),  KC_1,    KC_2,    KC_3,    KC_4,               KC_5,                                   /**/                   KC_6,            KC_7,            KC_8,    KC_9,    KC_0,       KC_BSPC, \
+    CC_T(KC_ESC),  KC_Q,    KC_W,    KC_E,    KC_R,               KC_T,                                   /**/                   KC_Y,            KC_U,            KC_I,    KC_O,    CC_T(KC_P), KC_BSPC, \
+    SC_T(KC_TAB),  KC_A,    KC_S,    KC_D,    LT(_TEN_KEY, KC_F), KC_G,                                   /**/                   KC_H,            KC_J,            KC_K,    KC_L,    KC_SCLN,    KC_ENT, \
+    KC_LSFT,       KC_Z,    KC_X,    KC_C,    KC_V,               KC_B,            LT(LOWER, KC_SPC),     /**/ LT(RAISE,KC_SPC), KC_N,            KC_M,            KC_COMM, KC_DOT,  KC_SLSH,    KC_GRV , \
+    ADJUST,        KC_LGUI, KC_LALT, KC_LCTL, LT(LOWER, EISU),    LT(LOWER, EISU), SGUI_T(KC_SPC),        /**/ SGUI_T(KC_SPC),   LT(RAISE, KANA), LT(RAISE, KANA), KC_LEFT, KC_DOWN, KC_UP,      KC_RGHT \
   ),
 
 
@@ -206,13 +212,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    * |      |      |      |      |      |      |      |      |      |      | MODE | HUE- | SAT- | VAL- |
    * `-------------------------------------------------------------------------------------------------'
    */
-  [_ADJUST] =  LAYOUT( \
-      KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,                     KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12, \
-      _______, RESET,   RGBRST,  _______, _______, _______,                   _______, _______, _______, _______, _______, KC_DEL, \
-      _______, _______, _______, AU_ON,   AU_OFF,  AG_NORM,                   AG_SWAP, QWERTY,  _______, _______,  _______, _______, \
-      _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, RGB_TOG, RGB_HUI, RGB_SAI, RGB_VAI, \
-      _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, RGB_MOD, RGB_HUD, RGB_SAD, RGB_VAD \
-      )
+    [_ADJUST] =  LAYOUT(
+        KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,                     KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12,
+        _______, QK_BOOT,   RGBRST,  _______, _______, _______,                   _______, _______, _______, _______, _______, KC_DEL,
+        _______, _______, _______, AU_ON,   AU_OFF,  AG_NORM,                   AG_SWAP, QWERTY,  COLEMAK, DVORAK,  _______, _______,
+        _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, RGB_TOG, RGB_HUI, RGB_SAI, RGB_VAI,
+        _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, RGB_MOD, RGB_HUD, RGB_SAD, RGB_VAD
+        )
 };
 
 #elif MATRIX_ROWS == 8 // HELIX_ROWS == 4
@@ -461,24 +467,24 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     case EISU:
       if (record->event.pressed) {
         if (is_mac_mode()) {
-          register_code(KC_LANG2);
+          register_code(KC_LNG2);
         } else {
           SEND_STRING(SS_LALT("`"));
         }
       } else {
-        unregister_code(KC_LANG2);
+        unregister_code(KC_LNG2);
       }
       return false;
       break;
     case KANA:
       if (record->event.pressed) {
         if (is_mac_mode()) {
-          register_code(KC_LANG1);
+          register_code(KC_LNG1);
         } else {
           SEND_STRING(SS_LALT("`"));
         }
       } else {
-        unregister_code(KC_LANG1);
+        unregister_code(KC_LNG1);
       }
       return false;
       break;
