@@ -5,4 +5,4 @@
 
 #define RGBLIGHT_LAYERS_RETAIN_VAL
 
-//#define TAPPING_TERM 120
+#define TAPPING_TERM 120
